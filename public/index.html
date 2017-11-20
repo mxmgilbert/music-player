@@ -19,13 +19,18 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Music player</title>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+
+    <div id="container">
+        <div id="hook"></div>
+        <h1>Play Music</h1>
+        <input type="file" id="files" name="files[]" multiple/>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -36,5 +41,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://soulwire.github.io/sketch.js/js/sketch.min.js"></script>
+    <script src="%PUBLIC_URL%/visualizer.js"></script>
   </body>
 </html>

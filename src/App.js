@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+function PlayButton(props) {
+    const className = props.isMusicPlaying ? 'play active' : 'play';
+    return <a onClick={props.onClick} href="#" title="play music" className={className}/>;
 }
 
-export default App;
+class Container extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {isMusicPlaying: false};
+    }
+
+    handleClick(event) {
+        this.state.isMusicPlaying ? this.audio.pause() : this.audio.play();
+
+        this.setState(prevState => {
+            return{
+                isMusicPlaying: !prevState.isMusicPlaying
+            };
+        });
+    };
+
+    render() {
+        let status = this.state.isMusicPlaying ? 'Playing' : 'Not playing';
+        return (
+            <div>
+                <h1>{status}</h1>
+                <PlayButton
+                    onClick={this.handleClick.bind(this)}
+                    isMusicPlaying={this.state.isMusicPlaying}
+                />
+                <audio ref={(audioTag) => { this.audio = audioTag}} id="audio"/>
+            </div>
+        );
+    }
+}
+
+export default Container;
